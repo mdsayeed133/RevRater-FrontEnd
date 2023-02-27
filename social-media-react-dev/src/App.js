@@ -21,5 +21,5 @@ function App() {
     </div>
   );
 }
-\npm install redux react-redux redux-thunk
+
 export default App;

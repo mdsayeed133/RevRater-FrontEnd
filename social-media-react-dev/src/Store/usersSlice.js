@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+//const { createAsyncThunk, createSlice } = require("@reduxjs/toolkit");
+//const axios = require("axios");
+
 const baseURL = "http://localhost:5000/RevRater";
 
 const initialState = {

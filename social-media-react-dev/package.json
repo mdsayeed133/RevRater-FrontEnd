@@ -12,10 +12,21 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "web-vitals": "^2.1.4"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },"transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!(axios)/)"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.js?(x)",
+      "**/?(*.)+(spec|test).js?(x)"
+    ]
   },
   "scripts": {
     "start": "react-scripts start",
@@ -42,6 +53,9 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.3.3"
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "@types/react-router-dom": "^5.3.3",
+    "babel-jest": "^29.4.3"
   }
 }
