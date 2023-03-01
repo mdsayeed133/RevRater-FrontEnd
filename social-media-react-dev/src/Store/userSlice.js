@@ -8,6 +8,7 @@ const initialState = {
   user: {},
   followedEmployees: [],
   searchResults: [],
+  followMessage: "",
   isFollowing: false,
   status: "idle",
   error: null
@@ -100,6 +101,9 @@ const userSlice = createSlice({
     setSearchResults: (state, action) => {
       state.searchResults = action.payload;
     },
+    setFollowMessage:(state,action) =>{
+      state.followMessage= action.payload;
+    },
     setIsFollowing: (state, action) => {
       state.isFollowing = action.payload;
     },
@@ -131,7 +135,52 @@ const userSlice = createSlice({
       .addCase(fetchFollowedEmployees.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-      });
+      })
+      .addCase(followEmployee.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(unfollowEmployee.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(followEmployee.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.followMessage = action.payload;
+      })
+      .addCase(unfollowEmployee.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.followMessage = action.payload;
+      })
+      .addCase(followEmployee.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(unfollowEmployee.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(searchUsers.pending, (state) => {
+        state.status = "loading";
+      }) 
+      .addCase(searchUsers.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.searchResults = action.payload;
+      })
+      .addCase(searchUsers.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(checkIsFollowing.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(checkIsFollowing.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.isFollowing = action.payload;
+      })
+      .addCase(checkIsFollowing.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      ;
   }
 });
 

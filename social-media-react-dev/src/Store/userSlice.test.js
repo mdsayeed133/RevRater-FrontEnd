@@ -119,6 +119,5 @@ describe('fetchFollowedEmployees', () => {
     expect(store.getActions()).toEqual(expectedActions);
     expect(store.getActions()[1].payload).toEqual(followedEmployees);
 
-
   });
 });
