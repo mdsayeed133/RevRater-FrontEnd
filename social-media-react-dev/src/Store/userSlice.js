@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-//const { createAsyncThunk, createSlice } = require("@reduxjs/toolkit");
-//const axios = require("axios");
 
 const baseURL = "http://localhost:5000/RevRater";
 
@@ -20,6 +18,7 @@ export const fetchUserById = createAsyncThunk(
   async (id) => {
     try {
       const response = await axios.get(`${baseURL}/users/${id}/id`);
+      //console.log(response.data);
       return response.data;
     } catch (error) {
       throw new Error(error);
@@ -90,7 +89,7 @@ export const checkIsFollowing = createAsyncThunk(
 
 const userSlice = createSlice({
   name: "users",
-  initialState,
+  initialState: initialState,
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;
@@ -111,25 +110,28 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addMatcher(
-        (action) => action.type.endsWith("/pending"),
-        (state) => {
-          state.status = "loading";
-        }
-      )
-      .addMatcher(
-        (action) => action.type.endsWith("/fulfilled"),
-        (state) => {
-          state.status = "succeeded";
-        }
-      )
-      .addMatcher(
-        (action) => action.type.endsWith("/rejected"),
-        (state, action) => {
-          state.status = "failed";
-          state.error = action.error.message;
-        }
-      );
+      .addCase(fetchUserById.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchUserById.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.user = action.payload;
+      })
+      .addCase(fetchUserById.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(fetchFollowedEmployees.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchFollowedEmployees.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.followedEmployees = action.payload;
+      })
+      .addCase(fetchFollowedEmployees.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      });
   }
 });
 
