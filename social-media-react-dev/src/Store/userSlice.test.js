@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import axios from 'axios';
 import { fetchUserById, 
   fetchFollowedEmployees,
+  updatePassword,
   searchUsers} from './userSlice';
 
 jest.mock('axios');
@@ -129,6 +130,7 @@ describe('fetchFollowedEmployees', () => {
 
     });
   });
+
 describe('searchUsers', () => {
   it("should fetch search results and set the correct values", async () => {
     const search = "tha";
@@ -158,25 +160,30 @@ describe('searchUsers', () => {
         date: "2023-02-23T04:28:06.500386Z",
       },
     ];
+
+    axios.get.mockResolvedValue({
+        data: searchResults,
+    });
+
     const expectedActions = [
-          {
-            type: searchUsers.pending.type,
-            meta: {
-              arg: search,
-              requestId: expect.any(String),
-              requestStatus: 'pending',
-            },
-          },
-          {
-            type: searchUsers.fulfilled.type,
-            payload: searchResults,
-            meta: {
-              arg: search,
-              requestId: expect.any(String),
-              requestStatus: 'fulfilled',
-            },
-          },
-        ];
+    {
+      type: searchUsers.pending.type,
+      meta: {
+        arg: search,
+        requestId: expect.any(String),
+        requestStatus: 'pending',
+      },
+    },
+    {
+      type: searchUsers.fulfilled.type,
+      payload: searchResults,
+      meta: {
+        arg: search,
+        requestId: expect.any(String),
+        requestStatus: 'fulfilled',
+      },
+    },
+    ];
 
     const store = mockStore({
           user: {},
@@ -193,5 +200,97 @@ describe('searchUsers', () => {
 
     expect(store.getActions()).toEqual(expectedActions);
     expect(store.getActions()[1].payload).toEqual(searchResults);
+  });
+});
+
+describe('updatePassword', () => {
+  it('should update the user password and set the correct message', async () => {
+    const passwordResetRequest = {
+      userId: 201,
+      password: 'newPassword',
+    };
+
+    axios.put.mockResolvedValue({ status: 200 });
+
+    const expectedActions = [
+      {
+        type: updatePassword.pending.type,
+        meta: {
+          arg: passwordResetRequest,
+          requestId: expect.any(String),
+          requestStatus: 'pending',
+        },
+      },
+      {
+        type: updatePassword.fulfilled.type,
+        payload: 'password reseted :)',
+        meta: {
+          arg: passwordResetRequest,
+          requestId: expect.any(String),
+          requestStatus: 'fulfilled',
+        },
+      },
+    ];
+
+    const store = mockStore({
+      user: {},
+      followedEmployees: [],
+      searchResults: [],
+      followMessage: "",
+      resetMessage:"",
+      isFollowing: false,
+      status: "idle",
+      error: null
+    });
+
+    await store.dispatch(updatePassword(passwordResetRequest)).unwrap();
+
+    expect(store.getActions()).toEqual(expectedActions);
+    expect(store.getActions()[1].payload).toEqual('password reseted :)');
+  });
+
+  it('should return an error message when password reset fails', async () => {
+    const passwordResetRequest = {
+      userId: 201,
+      password: 'newPassword',
+    };
+
+    axios.put.mockResolvedValue({ status: 500 });
+
+    const expectedActions = [
+      {
+        type: updatePassword.pending.type,
+        meta: {
+          arg: passwordResetRequest,
+          requestId: expect.any(String),
+          requestStatus: 'pending',
+        },
+      },
+      {
+        type: updatePassword.fulfilled.type,
+        payload: 'password not reseted :(',
+        meta: {
+          arg: passwordResetRequest,
+          requestId: expect.any(String),
+          requestStatus: 'fulfilled',
+        },
+      },
+    ];
+
+    const store = mockStore({
+      user: {},
+      followedEmployees: [],
+      searchResults: [],
+      followMessage: "",
+      resetMessage:"",
+      isFollowing: false,
+      status: "idle",
+      error: null
+    });
+
+    await store.dispatch(updatePassword(passwordResetRequest)).unwrap();
+
+    expect(store.getActions()).toEqual(expectedActions);
+    expect(store.getActions()[1].payload).toEqual('password not reseted :(');
   });
 });

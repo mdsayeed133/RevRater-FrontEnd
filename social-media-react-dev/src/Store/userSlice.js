@@ -43,10 +43,7 @@ export const searchUsers = createAsyncThunk(
   "user/search",
   async (search) => {
     try {
-      //console.log(`${baseURL}/users/${search}/search`);
       const response =await axios.get(`${baseURL}/users/${search}/search`);
-      //.then((x)=> resolve(console.log(x.status)) );
-      //console.log(response.status);
       return response.data;
     } catch (error) {
       
@@ -59,7 +56,7 @@ export const updatePassword = createAsyncThunk(
   "user/updatePassword",
   async (passwordResetRequest) => {
     try {
-      const response = await axios.put(`${baseURL}/users/updatePassword`, {data: passwordResetRequest});
+      const response = await axios.put(`${baseURL}/users/updatePassword`,passwordResetRequest);
       if(response.status===200){
         return "password reseted :)";
       } else{
@@ -75,7 +72,7 @@ export const followEmployee = createAsyncThunk(
   "user/follow",
   async (followRequest) => {
     try {
-      const response = await axios.put(`${baseURL}/users/follow`, {data: followRequest});
+      const response = await axios.put(`${baseURL}/users/follow`,followRequest);
       return response.data;
     } catch (error) {
       throw new Error(error);
@@ -87,7 +84,7 @@ export const unfollowEmployee = createAsyncThunk(
   "user/unfollow",
   async (followRequest) => {
     try {
-      const response = await axios.put(`${baseURL}/users/unfollow`, {data: followRequest});
+      const response = await axios.put(`${baseURL}/users/unfollow`, followRequest);
       return response.data;
     } catch (error) {
       throw new Error(error);
@@ -99,7 +96,8 @@ export const checkIsFollowing = createAsyncThunk(
   "user/checkIsFollowing",
   async (followRequest) => {
     try {
-      const response = await axios.get(`${baseURL}/users/isFollowing`, { data: followRequest});
+      const response = await axios.put(`${baseURL}/users/isFollowing`,followRequest);
+      console.log(response);
       return response.data;
     } catch (error) {
       throw new Error(error);
