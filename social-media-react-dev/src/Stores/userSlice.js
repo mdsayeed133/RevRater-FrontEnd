@@ -5,7 +5,7 @@ import axios from "axios";
 const baseURL = "http://localhost:5000/RevRater";
 
 const initialState = {
-  user: {},
+  user: null,
   followedEmployees: [],
   searchResults: [],
   followMessage: "",
@@ -110,28 +110,6 @@ const userSlice = createSlice({
   name: "users",
   initialState: initialState,
   reducers: {
-    setUser: (state, action) => {
-      state.user = action.payload;
-    },
-    setFollowedEmployees: (state, action) => {
-      state.followedEmployees = action.payload;
-    },
-    setSearchResults: (state, action) => {
-      state.searchResults = action.payload;
-    },
-    setFollowMessage:(state,action) =>{
-      state.followMessage= action.payload;
-    },
-    setIsFollowing: (state, action) => {
-      state.isFollowing = action.payload;
-    },
-    setResetMessage:(state, action)=>{
-      state.resetMessage= action.payload;
-    },
-    resetStatus: (state) => {
-      state.status = "idle";
-      state.error = null;
-    }
   },
   extraReducers: (builder) => {
     builder

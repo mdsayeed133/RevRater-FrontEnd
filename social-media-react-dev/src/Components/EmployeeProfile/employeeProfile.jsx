@@ -4,7 +4,7 @@ import { getEmployeeById } from '../../Stores/employeeSlice';
 
 function EmployeeProfile({ id }) {
   const dispatch = useDispatch();
-  const employee = useSelector((state) => state.employee.employee);
+  const employee = useSelector((state) => state.employees.employee);
 
   useEffect(() => {
     dispatch(getEmployeeById(id));

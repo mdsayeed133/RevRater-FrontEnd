@@ -52,7 +52,7 @@ export const searchEmployees = createAsyncThunk(
 );
 
 const employeeSlice = createSlice({
-  name: 'employee',
+  name: 'employees',
   initialState: {
     employee: null,
     employees: [],
