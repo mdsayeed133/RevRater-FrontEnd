@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserById, checkIsFollowing } from "../../Store/userSlice";
+import { fetchUserById, checkIsFollowing } from "../../Stores/userSlice";
+import FollowRequest from "../../Classes/FollowRequest";
 
 const UserProfile = ({ userId }) => {
   const dispatch = useDispatch();
@@ -8,12 +9,8 @@ const UserProfile = ({ userId }) => {
   const isFollowing= useSelector((state)=> state.users.isFollowing);
 
   useEffect(() => {
-    const followRequest = {
-      userId: userId,
-      employeeId: 2,
-    };
     dispatch(fetchUserById(userId));
-    dispatch(checkIsFollowing(followRequest));
+    dispatch(checkIsFollowing(new FollowRequest(userId,21)));
   }, [dispatch, userId]);
 
   if (!user) {

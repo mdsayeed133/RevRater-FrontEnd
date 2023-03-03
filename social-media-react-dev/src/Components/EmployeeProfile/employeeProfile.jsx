@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getEmployeeById } from '../../Store/employeeSlice';
+import { getEmployeeById } from '../../Stores/employeeSlice';
 
 function EmployeeProfile({ id }) {
   const dispatch = useDispatch();
