@@ -1,0 +1,46 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4f4b4b;
+    padding: 1rem;
+    color: white;
+    
+}
+
+.navbar-logo {
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    text-shadow: 4px 4px 8px rgb(10, 109, 159);
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+}
+
+.navbar-menu-li {
+    margin-right: 1rem;
+}
+
+.navbar-menu-li:last-child {
+    margin-right: 0;
+}
+
+.navbar-menu-link {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar-menu-link:hover {
+    text-decoration: underline;
+}
+.navbar-user-pic {
+    text-decoration: none;
+    color: white
+}
+.navbar-user-pic:hover {
+    color: rgb(3, 229, 250)
+}

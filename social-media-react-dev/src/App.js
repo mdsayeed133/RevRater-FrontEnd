@@ -1,15 +1,30 @@
-import { Provider } from 'react-redux';
-import {store} from '../src/Stores/store';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
-import EmployeeProfile from './Components/EmployeeProfile/employeeProfile';
-import UserProfile from './Components/UserProfile/userProfile';
+import LoginPage from './Components/LoginPage/loginPage';
+import NavBar from './Components/Navbar/navBar';
+import RegisterPage from './Components/RegisterPage/registerPage';
 
 function App() {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
   return (
-    <Provider store={store}>
-      <UserProfile userId={21} />
-      <EmployeeProfile id={21}/>
-    </Provider>
+      <BrowserRouter>
+        <NavBar/>
+        <div className='App'>
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+          <div className="button-container">
+            <button onClick={scrollToTop}>^</button>
+          </div>
+        </div>
+      </BrowserRouter>
   );
 }
 

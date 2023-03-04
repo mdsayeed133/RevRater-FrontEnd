@@ -55,7 +55,8 @@ const employeeSlice = createSlice({
   name: 'employees',
   initialState: {
     employee: null,
-    employees: [],
+    createdEmployee: null,
+    allEmployees: [],
     searchResults: [],
     status: 'idle',
     error: null,
@@ -79,7 +80,7 @@ const employeeSlice = createSlice({
       })
       .addCase(getAllEmployees.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.employees = action.payload;
+        state.allEmployees = action.payload;
       })
       .addCase(getAllEmployees.rejected, (state, action) => {
         state.status = 'failed';
@@ -90,7 +91,7 @@ const employeeSlice = createSlice({
       })
       .addCase(createEmployee.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.employee = action.payload;
+        state.createdEmployee = action.payload;
       })
       .addCase(createEmployee.rejected, (state, action) => {
         state.status = 'failed';

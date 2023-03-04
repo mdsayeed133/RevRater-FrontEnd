@@ -4,16 +4,7 @@ import axios from "axios";
 
 const baseURL = "http://localhost:5000/RevRater";
 
-const initialState = {
-  user: null,
-  followedEmployees: [],
-  searchResults: [],
-  followMessage: "",
-  resetMessage:"",
-  isFollowing: false,
-  status: "idle",
-  error: null
-};
+
 
 export const fetchUserById = createAsyncThunk(
   "user/fetchById",
@@ -108,7 +99,16 @@ export const checkIsFollowing = createAsyncThunk(
 
 const userSlice = createSlice({
   name: "users",
-  initialState: initialState,
+  initialState: {
+    user: null,
+    followedEmployees: [],
+    searchResults: [],
+    followMessage: "",
+    resetMessage:"",
+    isFollowing: false,
+    status: "idle",
+    error: null
+  },
   reducers: {
   },
   extraReducers: (builder) => {
