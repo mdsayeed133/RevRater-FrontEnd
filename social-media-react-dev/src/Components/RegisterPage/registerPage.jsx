@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState,useEffect } from 'react';
+import { Link ,useNavigate} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../Stores/authSlice';
 import RegisterRequest from '../../Classes/RegisterRequest';
@@ -12,11 +12,18 @@ const RegisterPage = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);
   const handleFirstNameChange = (event) => setFirstName(event.target.value);
   const handleLastNameChange = (event) => setLastName(event.target.value);
+
+  useEffect(() => {
+    if (registerStatus === 'succeeded') {
+      navigate('/feed');
+    }
+  }, [registerStatus, navigate]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,19 +38,10 @@ const RegisterPage = () => {
     }
   };
 
-  const displayAlert = () => {
-    if (registerStatus === 'succeeded') {
-      return <div className="register-alert">Registered as {email}!</div>;
-    } else {
-      return null;
-    }
-  };
-
   return (
     <div className="register-page">
       <h1 className="register-form-h1">Register</h1>
       {displayMessage()}
-      {displayAlert()}
       <form onSubmit={handleSubmit}>
         <div className="register-form">
           <label className="register-form-label" htmlFor="email">Email:</label>
@@ -90,7 +88,7 @@ const RegisterPage = () => {
           />
         </div>
         <button className="register-form-button" type="submit">Register</button>
-        <span class="register-form-span">Account? <Link to="/">Login now</Link></span>
+        <span class="register-form-span">Account? <Link to="/login">Login now</Link></span>
       </form>
     </div>
   );

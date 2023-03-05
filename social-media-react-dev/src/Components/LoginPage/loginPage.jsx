@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../Stores/authSlice';
 import LoginRequest from '../../Classes/LoginRequest';
@@ -7,13 +7,19 @@ import './loginPage.css'
 
 const LoginPage= () => {
   const loginStatus = useSelector((state) => state.auth.status);
-  const loginUser = useSelector((state)=> state.auth.login);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);
+
+  useEffect(() => {
+    if (loginStatus === 'succeeded') {
+      navigate('/feed');
+    }
+  }, [loginStatus, navigate]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -28,19 +34,11 @@ const LoginPage= () => {
     }
   };
 
-  const displayAlert = () => {
-    if (loginStatus === 'succeeded') {
-      return <div class="login-alert">Logged in as {loginUser.firstName}</div>;
-    } else {
-      return null;
-    }
-  };
 
   return (
     <div class="login-page">
       <h1 class="login-form-h1">Login</h1>
       {displayMessage()}
-      {displayAlert()}
       <form onSubmit={handleSubmit}>
         <div class="login-form">
           <label class="login-form-label" htmlFor="email">Email:</label>

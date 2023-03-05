@@ -13,7 +13,7 @@ const NavBar = () => {
 
     const handleLogout = () => {
         dispatch(logout());
-        navigate('/')
+        navigate('/login')
     };
 
     return (
@@ -25,17 +25,36 @@ const NavBar = () => {
                 <li className="navbar-menu-li">
                     <Link className="navbar-menu-link" to="/">Home</Link>
                 </li>
+                {!loginUser &&
                 <li className="navbar-menu-li">
                     <Link className="navbar-menu-link" to="/login">Login</Link>
-                </li>
+                </li>}
+                {!loginUser &&
                 <li className="navbar-menu-li">
                     <Link className="navbar-menu-link" to="/register">Register</Link>
+                </li>}
+                {loginUser &&
+                <li className="navbar-menu-li">
+                    <Link className="navbar-menu-link" to="/feed">Feed</Link>
+                </li>}
+                {loginUser &&
+                <li className="navbar-menu-li">
+                    <Link className="navbar-menu-link" to="/create-emp">Create Employee</Link>
+                </li>}
+                <li className="navbar-menu-li">
+                    <Link className="navbar-menu-link" to="/all-emp">All Employee</Link>
+                </li>
+                <li className="navbar-menu-li">
+                    <Link className="navbar-menu-link" to="/search">Search</Link>
                 </li>
             </ul>
             <div >
+                {!loginUser &&
+                    <span className='navbar-user-vic'>--------------------------</span>
+                }
                 {loginUser && 
                     <span >
-                        <Link className="navbar-user-pic" to='/'>{loginUser.firstName} {loginUser.lastName} </Link>
+                        <Link className="navbar-user-pic" to='/user-picfile'>{loginUser.firstName} {loginUser.lastName} </Link>
                         <IconButton
                             size="medium"
                             onClick={handleLogout}>

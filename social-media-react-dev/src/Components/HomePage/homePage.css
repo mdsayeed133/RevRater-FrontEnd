@@ -1,0 +1,99 @@
+.homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.homepage-header {
+    margin-bottom: 20px;
+}
+
+.homepage-header img {
+    height: 160px;
+}
+
+.homepage-about {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-align: justify;
+    padding: 0 2rem;
+    line-height: 1.5;
+}
+
+.homepage-emp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homepage-emp-text div:first-child {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.homepage-emp-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.homepage-join {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homepage-join-text div:first-child {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.homepage-join-text div:last-child {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.homepage-join-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.homepage-join-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homepage-join-card img {
+    height: 200px;
+    margin-bottom: 10px;
+    margin-right: 2rem;
+    margin-left: 6rem;
+}
+
+.homepage-join-card-text {
+    font-size: 16px;
+    text-align: center;
+    margin-right: 2rem;
+    margin-left: 6rem;
+    
+}
+
+.homepage-join-button {
+    padding: 10px 30px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 25px;
+    background-color: #0080ff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.homepage-join-button:hover {
+    background-color: #0059b3;
+}

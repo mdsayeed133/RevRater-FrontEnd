@@ -44,7 +44,7 @@ const ratingSlice = createSlice({
   initialState: {
     employeeAvgRating: null,
     top3Tags: [],
-    top3Employees: [],
+    top3Employees: null,
     status: 'idle',
     error: null,
   },

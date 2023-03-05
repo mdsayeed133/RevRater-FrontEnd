@@ -39,17 +39,6 @@ export const createEmployee = createAsyncThunk(
   }
 );
 
-export const searchEmployees = createAsyncThunk(
-  'employee/searchEmployees',
-  async (searchTerm) => {
-    try {
-      const response = await axios.get(`${baseURL}/employee/${searchTerm}/search`);
-      return response.data;
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
-);
 
 const employeeSlice = createSlice({
   name: 'employees',
@@ -57,7 +46,6 @@ const employeeSlice = createSlice({
     employee: null,
     createdEmployee: null,
     allEmployees: [],
-    searchResults: [],
     status: 'idle',
     error: null,
   },
@@ -97,17 +85,7 @@ const employeeSlice = createSlice({
         state.status = 'failed';
         state.error = action.error.message;
       })
-      .addCase(searchEmployees.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(searchEmployees.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.searchResults = action.payload;
-      })
-      .addCase(searchEmployees.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
-      });
+      ;
   },
 });
 
