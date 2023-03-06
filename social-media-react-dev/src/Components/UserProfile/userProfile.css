@@ -1,30 +1,106 @@
-.not-login-message {
-    margin-top: 45px;
-    font-size: 3rem;
-    text-align: center;
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 2rem;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #000000;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    width: 80%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.colum {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.user-stats ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.user-stats ul li {
+    margin-bottom: 0.5rem;
 }
 
 .user-info {
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.deets {
+    margin-top: 1rem;
+}
 
-#profilePic {
-    border: 1px solid black;
-    width: 100px;
-    height: 100px;
-    font-size: 60px;
-    border-radius: 50%;
-    text-align: center;
+.details {
+    margin-bottom: 0.5rem;
 }
 
 .user-pic {
-    text-align: center;
-    /* margin-top: 20px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.posted-comments {
-    border-top: 2px solid black;
+#profilePic {
+    font-size: 4rem;
+    background-color: #e38800;
+    border: 2px solid #000000;
+    border-radius: 50%;
+    width: 10rem;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #0077ff;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #005eff;
+}
+
+.not-login-message {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 20rem;
+    margin-bottom: 40rem;
+    margin-left: 40rem;
+    margin-right: 40rem;
 }

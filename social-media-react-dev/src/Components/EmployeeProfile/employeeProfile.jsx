@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { getEmployeeById } from '../../Stores/employeeSlice';
 
-function EmployeeProfile({ id }) {
+const EmployeeProfile = () => {
+  let {id} = useParams(); //path = '/employeeprofile/:id'
   const dispatch = useDispatch();
   const employee = useSelector((state) => state.employees.employee);
 
@@ -12,7 +14,7 @@ function EmployeeProfile({ id }) {
 
 if (!employee ) {
     return <div>Loading...</div>;
-  }
+}
 
   return (
     <div>

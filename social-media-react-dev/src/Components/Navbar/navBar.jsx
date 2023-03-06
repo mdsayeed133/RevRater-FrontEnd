@@ -42,9 +42,6 @@ const NavBar = () => {
                     <Link className="navbar-menu-link" to="/create-emp">Create Employee</Link>
                 </li>}
                 <li className="navbar-menu-li">
-                    <Link className="navbar-menu-link" to="/all-emp">All Employee</Link>
-                </li>
-                <li className="navbar-menu-li">
                     <Link className="navbar-menu-link" to="/search">Search</Link>
                 </li>
             </ul>
@@ -54,7 +51,7 @@ const NavBar = () => {
                 }
                 {loginUser && 
                     <span >
-                        <Link className="navbar-user-pic" to='/user-picfile'>{loginUser.firstName} {loginUser.lastName} </Link>
+                        <Link className="navbar-user-pic" to='/user-profile'>{loginUser.firstName} {loginUser.lastName} </Link>
                         <IconButton
                             size="medium"
                             onClick={handleLogout}>

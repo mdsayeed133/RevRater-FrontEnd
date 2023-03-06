@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux';
 import {getTop3Employees} from '../../Stores/ratingSlice'
+import EmployeeCard from '../EmployeeCards/employeeCard';
 import './homePage.css'
 import logo from '../../Images/big_rmp_logo.41f961d.svg'
 import anonymous from '../../Images/instructional-slide-mystery-lady.bf022e31.svg'
@@ -30,10 +31,16 @@ const HomePage = () => {
                 <div>
                     Here are the Three Highed Rated Employees
                 </div>
+                {!top3Emp && 
                 <div className='homepage-emp-cards'>
-                    {!top3Emp && <h2>Loading. . .</h2>}
-                    {top3Emp &&<p>{top3Emp[1].id}</p>}
-                </div>
+                   Loading. . .
+                </div>}
+                {top3Emp &&
+                <div className='homepage-emp-cards'>
+                    {top3Emp.map((employee, index) => (
+                        < EmployeeCard key={index} employee={employee} />
+                    ))}
+                </div>}
             </div>
         </div>
         <div class="homepage-join">
