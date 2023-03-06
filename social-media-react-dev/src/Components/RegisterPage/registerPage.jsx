@@ -21,7 +21,7 @@ const RegisterPage = () => {
 
   useEffect(() => {
     if (registerStatus === 'succeeded') {
-      navigate('/feed');
+      navigate("/user-profile");
     }
   }, [registerStatus, navigate]);
 
@@ -88,7 +88,7 @@ const RegisterPage = () => {
           />
         </div>
         <button className="register-form-button" type="submit">Register</button>
-        <span class="register-form-span">Account? <Link to="/login">Login now</Link></span>
+        <span className="register-form-span">Account? <Link to="/login">Login now</Link></span>
       </form>
     </div>
   );

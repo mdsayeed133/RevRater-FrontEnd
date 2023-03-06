@@ -42,8 +42,8 @@ export const getTop3Employees = createAsyncThunk(
 const ratingSlice = createSlice({
   name: 'rating',
   initialState: {
-    employeeAvgRating: null,
-    top3Tags: [],
+    employeeAvgRating: 0,
+    top3Tags: null,
     top3Employees: null,
     status: 'idle',
     error: null,

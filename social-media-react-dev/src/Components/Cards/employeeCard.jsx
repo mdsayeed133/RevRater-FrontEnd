@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './employeeCard.css'
+import './card.css'
 
 
 
@@ -31,14 +31,14 @@ const EmployeeCard = ({ employee }) => {
     
     return (
         <div className="card">
-            <div className="employee-img">
+            <div className="card-img">
                 {employee.firstName.charAt(0)}{employee.lastName.charAt(0)}
             </div>
             <div className="card-body">
                 <h5 className="card-title">{`${employee.firstName} ${employee.lastName}`}</h5>
                 <p className="card-text">Department: <em>{employee.department.title}</em></p>
                 <p className="card-text">Rating: {score} </p>
-                <div className="button">
+                <div className="button-card">
                     <button className="button" onClick={seeProfile}>See Profile</button>
                 </div>
             </div>

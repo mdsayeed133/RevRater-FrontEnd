@@ -143,10 +143,12 @@ const userSlice = createSlice({
       })
       .addCase(followEmployee.fulfilled, (state, action) => {
         state.status = "succeeded";
+        //state.isFollowing=true;
         state.followMessage = action.payload;
       })
       .addCase(unfollowEmployee.fulfilled, (state, action) => {
         state.status = "succeeded";
+        //state.isFollowing= false;
         state.followMessage = action.payload;
       })
       .addCase(followEmployee.rejected, (state, action) => {

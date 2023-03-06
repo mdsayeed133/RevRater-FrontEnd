@@ -17,7 +17,7 @@ const LoginPage= () => {
 
   useEffect(() => {
     if (loginStatus === 'succeeded') {
-      navigate('/feed');
+      navigate("/user-profile");
     }
   }, [loginStatus, navigate]);
 
@@ -28,7 +28,7 @@ const LoginPage= () => {
 
   const displayMessage = () => {
     if (loginStatus === 'failed') {
-      return <div class="login-message">Email or password is incorrect</div>;
+      return <div className="login-message">Email or password is incorrect</div>;
     } else {
       return null;
     }
@@ -36,13 +36,13 @@ const LoginPage= () => {
 
 
   return (
-    <div class="login-page">
-      <h1 class="login-form-h1">Login</h1>
+    <div className="login-page">
+      <h1 className="login-form-h1">Login</h1>
       {displayMessage()}
       <form onSubmit={handleSubmit}>
-        <div class="login-form">
-          <label class="login-form-label" htmlFor="email">Email:</label>
-          <input class="login-form-input"
+        <div className="login-form">
+          <label className="login-form-label" htmlFor="email">Email:</label>
+          <input className="login-form-input"
             type="email"
             id="email"
             name="email"
@@ -51,9 +51,9 @@ const LoginPage= () => {
             required
           />
         </div>
-        <div class="login-form">
-          <label class="login-form-label" htmlFor="password">Password:</label>
-          <input class="login-form-input"
+        <div className="login-form">
+          <label className="login-form-label" htmlFor="password">Password:</label>
+          <input className="login-form-input"
             type="password"
             id="password"
             name="password"
@@ -62,8 +62,8 @@ const LoginPage= () => {
             required
           />
         </div>
-        <button class="login-form-button" type="submit">Login</button>
-        <span class="login-form-span">No Account?  <Link to="/register">Register now</Link></span>
+        <button className="login-form-button" type="submit">Login</button>
+        <span className="login-form-span">No Account?  <Link to="/register">Register now</Link></span>
       </form>
     </div>
   );
