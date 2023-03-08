@@ -102,7 +102,7 @@ const userSlice = createSlice({
   initialState: {
     user: null,
     followedEmployees: [],
-    searchResults: [],
+    searchResults: null,
     followMessage: "",
     resetMessage:"",
     isFollowing: false,

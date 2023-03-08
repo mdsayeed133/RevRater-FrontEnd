@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import {fetchUserById} from '../../Stores/userSlice'
 import {
   getRatingPostsOfUser,
   getCommentPostsOfUser,
@@ -8,10 +9,10 @@ import {
 } from "../../Stores/postSlice";
 import "./userProfile.css";
 
-const UserProfile = () => {
-  const navigate = useNavigate();
+const PublicProfile = () => {
+  let { id } = useParams(); //path = '/public-profile/:id'
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.login);
+  const user = useSelector((state) => state.users.user);
   const [averageRating, setAverageRating] = useState(0);
   const RatingPosts = useSelector((state) => state.post.ratingPostsOfUser);
   const CommmentPosts = useSelector((state) => state.post.commentPostsOfUser);
@@ -29,6 +30,7 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
+    dispatch(fetchUserById(id));
     if (user) {
       dispatch(getRatingPostsOfUser(user.id));
       dispatch(getCommentPostsOfUser(user.id));
@@ -36,14 +38,10 @@ const UserProfile = () => {
       updateAverageRating();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, user]);
+  }, [dispatch, id]);
 
   if (!user) {
-    return (
-      <div className="not-found-message">
-        <Link to="/login">Login</Link> Please
-      </div>
-    );
+    return <div className="not-found-message">WHO?</div>;
   }
 
   return (
@@ -84,7 +82,6 @@ const UserProfile = () => {
                 <p className="details">
                   Email: <em>{user.email}</em>
                 </p>
-                <button className="btn-user">Reset Password</button>
               </div>
             </div>
           </div>
@@ -94,12 +91,6 @@ const UserProfile = () => {
                 {user.firstName.charAt(0)}
                 {user.lastName.charAt(0)}
               </p>
-              <button
-                className="btn-user"
-                onClick={() => navigate(`/public-profile/${user.id}`)}
-              >
-                View Public
-              </button>
             </div>
           </div>
         </div>
@@ -113,4 +104,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default PublicProfile;

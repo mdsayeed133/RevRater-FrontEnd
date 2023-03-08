@@ -4,11 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getEmployeeById } from '../../Stores/employeeSlice';
 import {getTop3TagsOfEmployee, getEmployeeAvgRating} from '../../Stores/ratingSlice';
 import {unfollowEmployee, followEmployee, checkIsFollowing} from '../../Stores/userSlice';
+import {getPostsAboutEmployee} from '../../Stores/postSlice';
 import FollowRequest from '../../Classes/FollowRequest';
 import './employeeProfile.css';
 
 const EmployeeProfile = () => {
-  let {id} = useParams(); //path = '/employeeprofile/:id'
+  let {id} = useParams(); //path = '/employee=profile/:id'
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.login);
   const employee = useSelector((state) => state.employees.employee);
@@ -16,15 +17,19 @@ const EmployeeProfile = () => {
   const tags= useSelector((state) => state.rating.top3Tags);
   const isFollowing = useSelector((state) => state.users.isFollowing);
   const followMessage = useSelector((state) => state.users.followMessage);
+  const posts = useSelector((state) => state.post.postsAboutEmployee);
   const [click, setClick]= useState(false);
+  const [followCheck, setFollow]= useState(isFollowing);
 
   const Follow = () => {
     dispatch(followEmployee(new FollowRequest(user.id,id)));
+    setFollow(true);
     setClick(true);
   };
 
   const UnFollow= ()=>{
     dispatch(unfollowEmployee(new FollowRequest(user.id, id)));
+    setFollow(false);
     setClick(true);
   }
 
@@ -32,13 +37,17 @@ const EmployeeProfile = () => {
     dispatch(getEmployeeById(id));
     dispatch(getTop3TagsOfEmployee(id));
     dispatch(getEmployeeAvgRating(id));
+    dispatch(getPostsAboutEmployee(id))
     if(user){
       dispatch(checkIsFollowing(new FollowRequest(user.id,id)));
+      setFollow(isFollowing);
     }
-  }, [dispatch, id, user]);
+  }, [dispatch, id, user, isFollowing]);
+
+  
 
 if (!employee ) {
-    return <div className='not-found-message'>We can't found this person?</div>;
+    return <div className='not-found-message'>We can't find this person?</div>;
 }
 
   return (
@@ -47,24 +56,24 @@ if (!employee ) {
         <div className="row-emp">
           <div className="colum-emp">
             <div className="infos-emp">
-              <h2 className="emp-info">
+              <h2 className="emp-info-name">
                 Name: {employee.firstName} {employee.lastName}
               </h2>
-              <h4 className="emp-info">
+              <h3 className="emp-info">
                 Department: {employee.department.title}
-              </h4>
-              <h5 className="emp-info">
+              </h3>
+              <p className="emp-info">
                 Author: {employee.author.firstName} {employee.author.lastName}
-              </h5>
-              <h5 className="emp-info">Added at: {employee.createdDate}</h5>
+              </p>
+              <p className="emp-info">Added at: {employee.createdDate}</p>
               {!tags && (
-                <h4 className="emp-info">Most popular tags: loading...</h4>
+                <p className="emp-info">Most popular tags: loading...</p>
               )}
               {tags && (
-                <h4 className="emp-info">
+                <p className="emp-info">
                   Most popular tags: {tags[0].tagName}, {tags[1].tagName} and{" "}
                   {tags[2].tagName}
-                </h4>
+                </p>
               )}
             </div>
             <div className="btn-box">
@@ -79,7 +88,7 @@ if (!employee ) {
                 Rating: <em>{score}</em>
               </li>
               <li>
-                About Posts: <em>21</em>
+                About Posts: <em>{posts.length}</em>
               </li>
             </ul>
           </div>
@@ -93,13 +102,14 @@ if (!employee ) {
               </p>
               <div className="followBox-emp">
                 {click && <p>{followMessage}</p>}
+                {!click &&<p>|</p>}
                 {!user && (
                   <p>
-                    <Link to="/login">Login</Link> Please
+                    <Link to="/login">Login</Link> to follow
                   </p>
                 )}
-                {user && !isFollowing &&<button className="Follow-btn-emp" onClick={Follow}>Follow</button>}
-                {user && isFollowing &&<button className="Follow-btn-emp" onClick={UnFollow}>UnFollow</button>}
+                {user && !followCheck &&<button className="Follow-btn-emp" onClick={Follow}>Follow</button>}
+                {user && followCheck &&<button className="Follow-btn-emp" onClick={UnFollow}>UnFollow</button>}
               </div>
             </div>
           </div>

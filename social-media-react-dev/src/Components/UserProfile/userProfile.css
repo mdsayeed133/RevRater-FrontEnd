@@ -98,11 +98,9 @@
     background-color: #005eff;
 }
 
-.not-login-message {
+.not-found-message {
     font-size: 2.5rem;
     text-align: center;
-    margin-top: 20rem;
-    margin-bottom: 40rem;
-    margin-left: 40rem;
-    margin-right: 40rem;
+    padding: 200px;
+    padding-bottom: 600px;
 }
