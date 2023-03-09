@@ -139,12 +139,12 @@ function Search() {
       )}
       {!EmployeeResult && searchType && (
         <div className="search-fail">
-          <h1>There is no employee here</h1>
+          <h1>There are no employees here</h1>
         </div>
       )}
       {!UserResult && !searchType && (
         <div className="search-fail">
-          <h1>There is no user here</h1>
+          <h1>There are no users here</h1>
         </div>
       )}
     </div>

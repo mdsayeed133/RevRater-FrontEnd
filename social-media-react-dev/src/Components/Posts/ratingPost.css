@@ -1,0 +1,73 @@
+.ratingPost {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid #000000;
+  background-color: black;
+  color: aliceblue;
+  border-radius: 9px;
+  margin-bottom: 10px;
+}
+
+.ratingPost-header {
+    color: #000;
+    background-color: orange;
+    display: flex;
+    align-items: center;
+}
+
+.ratingPost-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.ratingPost-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.ratingPost-username {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.ratingPost-created-date {
+  font-size: 12px;
+}
+
+.ratingPost-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    margin-right: auto;
+}
+
+.ratingPost-text {
+text-align: justify;
+  margin-bottom: 10px;
+}
+
+.ratingPost-rating-score {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.ratingPost-rating-tags {
+  margin-bottom: 5px;
+}
+.ratingPost-emp-info {
+    color: orange;
+    margin-left: auto;
+    margin-bottom: 5px;
+}
+
+.ratingPost-employee {
+  margin-bottom: 5px;
+}
+
+.ratingPost-department {
+  margin-bottom: 5px;
+}

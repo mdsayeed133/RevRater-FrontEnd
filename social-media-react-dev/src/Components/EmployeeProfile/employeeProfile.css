@@ -39,7 +39,8 @@
     flex-direction: column;
     justify-content: left;
     align-items: flex-start;
-    margin-right: 100px;
+    margin-left: auto;
+  
 }
 
 .status-box-emp ul {
@@ -138,6 +139,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 50px;
+    width: 80%;
 }
 
 .posted-container-emp h2 {
